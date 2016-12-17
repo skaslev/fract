@@ -1,0 +1,34 @@
+-*- mode: compilation; default-directory: "~/src/fract/" -*-
+Compilation started at Sat Nov  5 00:37:09
+
+time ./fractz3.py --hammersley 4
+31 46 51
+Solving fractz3(4): 51 conditions, hold tight..
+sat
+x: [0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15]
+y: [3, 8, 13, 5, 7, 15, 11, 0, 14, 6, 2, 10, 9, 1, 4, 12]
+is_fractal(x): True
+is_fractal(y): True
+is_perfect(x, y): True
+
+Stats:
+(:binary-propagations  40
+ :conflicts            27
+ :decisions            106
+ :del-clause           24
+ :elim-clauses         12
+ :elim-literals        40
+ :eliminated-vars      36
+ :minimized-lits       4
+ :mk-binary-clause     163
+ :mk-bool-var          340
+ :mk-clause            104
+ :mk-ternary-clause    1048
+ :propagations         69
+ :ternary-propagations 912)
+
+real	0m0.135s
+user	0m0.092s
+sys	0m0.033s
+
+Compilation finished at Sat Nov  5 00:37:10

@@ -1,0 +1,38 @@
+-*- mode: compilation; default-directory: "~/src/fract/" -*-
+Compilation started at Sat Nov  5 00:39:29
+
+time ./fractz3.py 6
+63 126 147
+Solving fractz3(6): 147 conditions, hold tight..
+sat
+x: [53, 25, 33, 5, 43, 9, 57, 16, 21, 49, 37, 0, 30, 63, 15, 45, 11, 55, 23, 47, 35, 3, 28, 61, 6, 41, 51, 19, 38, 26, 13, 59, 7, 39, 62, 27, 14, 42, 20, 50, 10, 34, 58, 18, 2, 46, 31, 54, 32, 4, 48, 22, 40, 12, 24, 60, 17, 56, 8, 44, 1, 36, 52, 29]
+y: [56, 14, 16, 40, 48, 0, 24, 32, 28, 36, 9, 60, 55, 4, 21, 47, 38, 10, 19, 58, 26, 52, 2, 42, 12, 34, 22, 62, 6, 44, 30, 50, 25, 33, 8, 63, 49, 17, 1, 41, 13, 57, 20, 45, 37, 5, 29, 53, 43, 3, 31, 51, 11, 61, 23, 39, 15, 59, 46, 27, 18, 54, 7, 35]
+is_fractal(x): True
+is_fractal(y): True
+is_perfect(x, y): True
+
+Stats:
+(:binary-propagations        117405
+ :conflicts                  880
+ :decisions                  15982
+ :del-clause                 129113
+ :dyn-subsumption-resolution 24
+ :elim-bool-vars             23000
+ :elim-clauses               1280
+ :elim-literals              2066
+ :eliminated-vars            64
+ :minimized-lits             1249
+ :mk-binary-clause           17160
+ :mk-bool-var                36356
+ :mk-clause                  85997
+ :mk-ternary-clause          126281
+ :propagations               18895
+ :restarts                   5
+ :subsumed                   640
+ :ternary-propagations       410263)
+
+real	0m1.007s
+user	0m0.880s
+sys	0m0.075s
+
+Compilation finished at Sat Nov  5 00:39:30
