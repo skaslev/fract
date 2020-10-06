@@ -14,9 +14,9 @@ def fract(x, y, k, n, o, z):
     return (
         fract(x, y, k - 1, n2, o, z + 1) +
         fract(x, y, k - 1, n2, o + n2, z + 1) +
-        [z3.Distinct(*[x[i] >> z for i in xrange(o, o + n)]),
-         z3.Distinct(*[y[i] >> z for i in xrange(o, o + n)])] +
-        ([z3.Distinct(*[((x[i] >> (z + k - k2)) << k2) + (y[i] >> (z + k - k2)) for i in xrange(o, o + n)])]
+        [z3.Distinct(*[x[i] >> z for i in range(o, o + n)]),
+         z3.Distinct(*[y[i] >> z for i in range(o, o + n)])] +
+        ([z3.Distinct(*[((x[i] >> (z + k - k2)) << k2) + (y[i] >> (z + k - k2)) for i in range(o, o + n)])]
          if k % 2 == 0 else []))
 
 
@@ -24,14 +24,14 @@ def fractz3(k, use_hammersley=False, seed=-1):
     if k == 0:
         return
     n = 2 ** k
-    x = [z3.BitVec('x__{}'.format(i), k) for i in xrange(n)]
-    y = [z3.BitVec('y__{}'.format(i), k) for i in xrange(n)]
+    x = [z3.BitVec('x__{}'.format(i), k) for i in range(n)]
+    y = [z3.BitVec('y__{}'.format(i), k) for i in range(n)]
     cond = fract(x, y, k, n, 0, 0)
 
     # Fix x to be hammersley or have z3 figure an x for us
     if use_hammersley:
         hamm = permutations.hammersley(k)
-        cond.extend([x[i] == hamm[i] for i in xrange(n)])
+        cond.extend([x[i] == hamm[i] for i in range(n)])
 
     if seed >= 0:
         z3.set_param('auto_config', False)

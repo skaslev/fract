@@ -8,7 +8,7 @@ def is_fractal(p):
     if n == 1:
         return p == [0]
     return (
-        set(p) == set(xrange(n)) and
+        set(p) == set(range(n)) and
         is_fractal([x//2 for x in p[:n//2]]) and
         is_fractal([x//2 for x in p[n//2:]]))
 
@@ -47,7 +47,7 @@ def random_bit():
 def random_fractal(k):
     if k == 0:
         return [0]
-    bits = [random_bit() for i in xrange(1 << (k - 1))]
+    bits = [random_bit() for i in range(1 << (k - 1))]
     return (
         [(i << 1) | bits[i]        for i in random_fractal(k-1)] +
         [(i << 1) | (~bits[i] & 1) for i in random_fractal(k-1)])
@@ -100,7 +100,7 @@ def xfractal_star(k):
     if k == 0:
         yield [0]
     else:
-        for bit in xrange(2):
+        for bit in range(2):
             for left in xfractal_star(k - 1):
                 for right in xfractal_star(k - 1):
                     yield (
@@ -114,7 +114,7 @@ def get_bit(n, i):
 
 # fp_star_oracle(k,n) returns the n-th fractal* permutation with 2**k elements.
 # Also,
-# [fp_star_oracle(k,n) for n in xrange(fp_star(k))] == list(xfractal_star(k))
+# [fp_star_oracle(k,n) for n in range(fp_star(k))] == list(xfractal_star(k))
 # is true for all k.
 def fp_star_oracle(k, n):
     if k == 0:
@@ -136,8 +136,8 @@ def fp_star_oracle_inv(k, p):
     if k == 0:
         return 0
     bit = p[0] % 2
-    left  = fp_star_oracle_inv(k-1, [p[i] >> 1 for i in xrange(2**(k-1))])
-    right = fp_star_oracle_inv(k-1, [p[i] >> 1 for i in xrange(2**(k-1), 2**k)])
+    left  = fp_star_oracle_inv(k-1, [p[i] >> 1 for i in range(2**(k-1))])
+    right = fp_star_oracle_inv(k-1, [p[i] >> 1 for i in range(2**(k-1), 2**k)])
     return bit * (1 << (log_fp_star(k) - 1)) + fp_star(k-1) * left + right
 
 
@@ -146,7 +146,7 @@ def is_perfect(k, x, y):
     if k == 0:
         return x == [0] and y == [0]
     # Fractality check
-    if set(x) != set(xrange(1 << k)) or set(y) != set(xrange(1 << k)):
+    if set(x) != set(range(1 << k)) or set(y) != set(range(1 << k)):
         return False
     if k % 2 == 0:
         bucket_bits = k // 2
@@ -155,12 +155,12 @@ def is_perfect(k, x, y):
         bucket_bits = (k - 1) // 2
         bucket_points = 2
     buckets = {}
-    for i in xrange(1 << k):
+    for i in range(1 << k):
         b = ((x[i] >> (k - bucket_bits)) << bucket_bits) | (y[i] >> (k - bucket_bits))
         buckets[b] = buckets.setdefault(b, 0) + 1
     if len(buckets) != 1 << (2 * bucket_bits):
         return False
-    if not all(v == bucket_points for v in buckets.itervalues()):
+    if not all(v == bucket_points for v in buckets.values()):
         return False
     return (
         is_perfect(k-1, [i >> 1 for i in x[:(1 << (k-1))]], [i >> 1 for i in y[:(1 << (k-1))]]) and
